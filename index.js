@@ -1,5 +1,4 @@
-import express from "express";
-
+const express = require('express');
 const app = express();
 const PORT = 3000;
 
@@ -11,4 +10,4 @@ app.post("/post", (req, res) => {
     console.log("Data: ",req.body.temperature)
 });
 
-app.listen(PORT, () =>console.log(`Server running on port: http://localhost:${PORT}`));
+app.listen(process.env.PORT || PORT, () =>console.log(`Server running on port: http://localhost:${PORT}`));
