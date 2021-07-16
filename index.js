@@ -1,17 +1,18 @@
-import express from "express";
-import bodyParser from "body-parser";
-
+const express = require('express');
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
-app.use(bodyParser.json());
+app.use(express.json())
 
-app.get("/", (req, res) => res.send("Welcome to the Users API!"));
+var temperature = {}
+
+app.get("/", (req, res) => {res.send(temperature)});
 
 app.post("/post", (req, res) => {
     
     res.send("Send post request success API!")
-    console.log("Data: ",req.body.temperature)
+    temperature = req.body
+    console.log("Data: ",req.body)
 });
 
-app.listen(PORT, () =>console.log(`Server running on port: http://localhost:${PORT}`));
+app.listen(process.env.PORT || PORT, () =>console.log(`Server running on port: http://localhost:${PORT}`));
